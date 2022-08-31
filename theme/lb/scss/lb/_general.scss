@@ -199,3 +199,8 @@ a {
 #page.drawers .main-inner {
     background-color: transparent;
 }
+
+// Retire background white du header
+#page-wrapper .bg-white {
+    background: none !important;
+}
