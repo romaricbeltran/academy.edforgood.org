@@ -1,0 +1,48 @@
+@font-face {
+    font-family: clfallback;
+    src: url("[[font:theme|PTSerif.otf]]") format("opentype");
+}
+
+@font-face {
+    font-family: "ptserif";
+    src: url("[[font:theme|PTSerif-Regular.otf]]") format("opentype"),
+        url("[[font:theme|PTSerif-Regular.eot]]") format("eot"),
+        url("[[font:theme|PTSerif-Regular.woff]]") format("woff"),
+        url("[[font:theme|PTSerif-Regular.woff2]]") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ptserif";
+    src: url("[[font:theme|PTSerif-Italic.otf]]") format("opentype"),
+        url("[[font:theme|PTSerif-Italic.eot]]") format("eot"),
+        url("[[font:theme|PTSerif-Italic.woff]]") format("woff"),
+        url("[[font:theme|PTSerif-Italic.woff2]]") format("woff2");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "ptserif";
+    src: url("[[font:theme|PTSerif-Bold.otf]]") format("opentype"),
+        url("[[font:theme|PTSerif-Bold.eot]]") format("eot"),
+        url("[[font:theme|PTSerif-Bold.woff]]") format("woff"),
+        url("[[font:theme|PTSerif-Bold.woff2]]") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ptserif";
+    src: url("[[font:theme|PTSerif-Bold-Italic.otf]]") format("opentype")
+            url("[[font:theme|PTSerif-Bold-Italic.eot]]") format("eot"),
+        url("[[font:theme|PTSerif-Bold-Italic.woff]]") format("woff"),
+        url("[[font:theme|PTSerif-Bold-Italic.woff2]]") format("woff2");
+    font-weight: bold;
+    font-style: italic;
+}
+
+.ptseriffont {
+    font-family: ptserif, comic sans ms, clfallback, Verdana;
+}

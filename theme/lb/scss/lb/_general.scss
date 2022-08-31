@@ -99,17 +99,17 @@ body {
 }
 
 h1 {
-    font-family: "PT Serif" !important;
+    font-family: ptserif !important;
     font-weight: bold !important;
     font-size: 55px !important;
     line-height: 1.4em !important;
     letter-spacing: 0 !important;
     text-align: left;
-    color: black !important;
+    color: #1d2125 !important;
 }
 
 h2 {
-    font-family: "PT Serif", monospace !important;
+    font-family: ptserif, monospace !important;
     font-weight: bold !important;
     font-size: 40px !important;
     line-height: 1.4em !important;
@@ -124,7 +124,7 @@ h3 {
     font-size: 24px !important;
     line-height: 1.4em !important;
     letter-spacing: 0 !important;
-    color: black;
+    color: #1d2125;
     padding-bottom: 15px !important;
 }
 
@@ -133,7 +133,7 @@ li {
     font-family: "Ubuntu", Arial !important;
     font-size: 16px !important;
     line-height: 1.4em !important;
-    color: black;
+    color: #1d2125;
 }
 
 p {
@@ -144,6 +144,13 @@ a {
     font-family: "Ubuntu", Arial !important;
     font-size: 16px !important;
     line-height: 1.4em;
+    transition: all 0.25s ease-out;
+}
+
+.page-content a {
+    font-family: "Ubuntu", Arial !important;
+    font-size: 16px !important;
+    line-height: 1.4em;
     text-decoration: underline !important;
     color: #1f18c0 !important;
     transition: all 0.25s ease-out;
@@ -151,4 +158,44 @@ a {
     &:hover {
         color: #1f18c0 !important;
     }
+}
+
+// Couleur des boutons
+.btn-primary,
+.btn-secondary {
+    font-family: "Ubuntu", Arial !important;
+    font-size: 16px !important;
+    line-height: 1.4em;
+    transition: all 0.25s ease-out;
+    background-color: #1f18c0;
+    border-radius: 0;
+    color: white;
+
+    &:hover,
+    &:focus,
+    .focus {
+        color: #1f18c0;
+        border-color: #1f18c0;
+        background-color: transparent;
+    }
+}
+
+// Couleur du menu de navigation d'un cours
+.courseindex {
+    .courseindex-item.pageitem {
+        background-color: #1f18c0;
+        border-color: #1f18c0;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: #1f18c0;
+            border-color: #1f18c0;
+        }
+    }
+}
+
+// On retire le background white global
+#page.drawers .main-inner {
+    background-color: transparent;
 }
