@@ -177,22 +177,67 @@ a {
         color: #1f18c0;
         border-color: #1f18c0;
         background-color: transparent;
+        box-shadow: none;
     }
+}
+
+// Annulation border theme boost
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle,
+#course-category-listings
+    .listing-pagination
+    .yui3-button.active-page:not(:disabled):not(.disabled):active,
+#course-category-listings
+    .listing-pagination
+    .yui3-button.active-page:not(:disabled):not(.disabled).active,
+.show
+    > #course-category-listings
+    .listing-pagination
+    .yui3-button.active-page.dropdown-toggle {
+    border-color: #1f18c0 !important;
+    background-color: transparent !important;
+    color: #1f18c0 !important;
+    box-shadow: none !important;
 }
 
 // Couleur du menu de navigation d'un cours
 .courseindex {
+    .courseindex-item {
+        border-radius: 0 !important;
+    }
+
     .courseindex-item.pageitem {
         background-color: #1f18c0;
         border-color: #1f18c0;
+        box-shadow: none !important;
 
         &:hover,
         &:focus,
         &:active {
             background-color: #1f18c0;
             border-color: #1f18c0;
+            box-shadow: none !important;
         }
     }
+}
+
+[role="treeitem"]:not([aria-expanded="true"]):focus {
+    box-shadow: none !important;
+}
+
+// Encadrement des activités dans la page de cours
+.activity-item {
+    border-radius: 0 !important;
+}
+
+// Encadrement d'un cours dans Mes Cours
+.card {
+    border-radius: 0 !important;
+}
+
+.card-img {
+    border-radius: 0 !important;
 }
 
 // On retire le background white global
