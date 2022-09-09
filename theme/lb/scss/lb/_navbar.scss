@@ -60,7 +60,8 @@
                 }
 
                 &:hover,
-                &:focus {
+                &:focus,
+                &:active:focus {
                     color: white;
                     background-color: #1f18c0;
                 }
