@@ -292,3 +292,8 @@ a {
 .btn-outline-secondary {
     box-shadow: none !important;
 }
+
+// Remove Accueil du navbar
+.primary-navigation li[data-key="home"] {
+    display: none;
+}
