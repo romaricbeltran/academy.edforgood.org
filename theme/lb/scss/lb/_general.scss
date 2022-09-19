@@ -267,3 +267,28 @@ a {
 #page-wrapper .bg-white {
     background: none !important;
 }
+
+// style des formulaires Mes Cours
+.form-control {
+    background: none;
+
+    &:focus {
+        box-shadow: none;
+        border-color: inherit;
+        background: none;
+    }
+}
+
+.btn-outline-secondary:hover {
+    background-color: #1f18c0;
+}
+
+.show > .btn-outline-secondary.dropdown-toggle,
+.btn-outline-secondary:not(:disabled):not(.disabled):active {
+    background-color: #1f18c0;
+    border-color: #1f18c0;
+}
+
+.btn-outline-secondary {
+    box-shadow: none !important;
+}
