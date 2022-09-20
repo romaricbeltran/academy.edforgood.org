@@ -300,15 +300,21 @@ a {
 
 // Style de l'affichage de l'accueil "Liste combinée"
 #frontpage-category-combo {
-    .courses {
-        display: flex;
-        flex-flow: row wrap;
-        margin-right: -0.25rem;
-        margin-left: -0.25rem;
+    @media (min-width: 576px) {
+        .courses {
+            display: flex;
+            flex-flow: row wrap;
+            margin-right: -0.25rem;
+            margin-left: -0.25rem;
 
+            .coursebox {
+                width: calc(33.33% - 2rem);
+                margin: 1rem;
+            }
+        }
+    }
+    .courses {
         .coursebox {
-            width: calc(33.33% - 2rem);
-            margin: 1rem;
             background: #fff;
             padding: 0.8rem;
         }
