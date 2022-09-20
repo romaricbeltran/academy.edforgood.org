@@ -312,6 +312,10 @@ a {
 }
 
 .course_category_tree {
+    .collapsible-actions {
+        display: none;
+    }
+
     .category {
         margin-bottom: 40px;
     }
