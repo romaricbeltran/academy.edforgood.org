@@ -297,3 +297,24 @@ a {
 .primary-navigation li[data-key="home"] {
     display: none;
 }
+
+// Style de l'affichage de l'accueil "Liste combinée"
+#frontpage-category-combo {
+    .courses.frontpage-category-combo {
+        display: flex;
+        flex-flow: row wrap;
+        margin-right: -0.25rem;
+        margin-left: -0.25rem;
+
+        .coursebox {
+            width: calc(33.33% - 2rem);
+            margin: 1rem;
+            background: #fff;
+            padding: 0.8rem;
+        }
+    }
+
+    h2 {
+        display: none;
+    }
+}

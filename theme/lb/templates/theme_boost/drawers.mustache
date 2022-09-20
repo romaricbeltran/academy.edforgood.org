@@ -126,7 +126,7 @@
                     </div>
                 {{/hasblocks}}
             </div>
-            {{{ output.full_header }}}
+            {{^isHome}}{{{ output.full_header }}}{{/isHome}}
             {{#secondarymoremenu}}
                 <div class="secondary-navigation d-print-none">
                     {{> core/moremenu}}

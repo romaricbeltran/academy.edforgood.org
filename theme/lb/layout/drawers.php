@@ -108,8 +108,12 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton
 ];
 
-if ($this->page->pagetype == "my-index") {
+if ($this->page->pagetype == "my-index" || $this->page->pagetype == "site-index") {
     $templatecontext['catalogue'] = true;
+}
+
+if ($this->page->pagetype == "site-index") {
+    $templatecontext['isHome'] = true;
 }
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
