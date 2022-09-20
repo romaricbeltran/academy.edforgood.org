@@ -103,4 +103,29 @@ class theme_lb_core_course_renderer extends core_course_renderer {
         $content .= html_writer::end_tag('div');
         return $content;
     }
+
+    /**
+     * Returns HTML to display course contacts.
+     *
+     * @param core_course_list_element $course
+     * @return string
+     */
+    protected function course_contacts(core_course_list_element $course) {
+        $content = '';
+        if ($course->has_course_contacts()) {
+            $content .= html_writer::start_tag('ul', ['class' => 'teachers']);
+            foreach ($course->get_course_contacts() as $coursecontact) {
+                $rolenames = array_map(function ($role) {
+                    return $role->displayname;
+                }, $coursecontact['roles']);
+                $name = html_writer::tag('span', implode(", ", $rolenames).' : ', ['class' => 'font-weight-bold']);
+                $name .= html_writer::link(new moodle_url('/user/view.php',
+                        ['id' => $coursecontact['user']->id, 'course' => SITEID]),
+                        $coursecontact['username']);
+                $content .= html_writer::tag('li', $name);
+            }
+            $content .= html_writer::end_tag('ul');
+        }
+        return $content;
+    }
 }
