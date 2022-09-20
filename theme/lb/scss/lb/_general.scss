@@ -308,6 +308,15 @@ a {
 }
 
 .course_category_tree {
+    .category {
+        border-top: 1px solid #8f959e;
+        border-bottom: 1px solid #8f959e;
+
+        &:last-of-type {
+            border-bottom: 0;
+        }
+    }
+
     .courses {
         .coursebox {
             background: #fff;
@@ -326,11 +335,6 @@ a {
             background-repeat: unset !important;
             background-position: unset !important;
             padding: 0 !important;
-            border-bottom: 1px solid #8f959e;
-
-            &:last-of-type {
-                border-bottom: 0;
-            }
         }
     }
 
