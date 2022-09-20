@@ -300,7 +300,7 @@ a {
 
 // Style de l'affichage de l'accueil "Liste combinée"
 #frontpage-category-combo {
-    @media (min-width: 576px) {
+    @media (min-width: 991.98px) {
         .courses {
             display: flex;
             flex-flow: row wrap;
@@ -317,6 +317,12 @@ a {
         .coursebox {
             background: #fff;
             padding: 0.8rem;
+
+            .info {
+                display: flex;
+                align-items: unset;
+                justify-content: space-between;
+            }
         }
     }
 
