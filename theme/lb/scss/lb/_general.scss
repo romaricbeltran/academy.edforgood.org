@@ -322,13 +322,13 @@ a {
         justify-content: space-between;
 
         .categoryname {
-            background-image: none;
-            background-repeat: unset;
-            background-position: unset;
-            padding: 0;
+            background-image: none !important;
+            background-repeat: unset !important;
+            background-position: unset !important;
+            padding: 0 !important;
             border-bottom: 1px solid #8f959e;
 
-            &:last-child {
+            &:last-of-type {
                 border-bottom: 0;
             }
         }
