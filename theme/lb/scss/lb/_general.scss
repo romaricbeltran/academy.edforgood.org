@@ -299,7 +299,25 @@ a {
 }
 
 // Style de l'affichage de l'accueil "Liste combinée"
-#frontpage-category-combo {
+.course_category_tree {
+    .courses {
+        .coursebox {
+            background: #fff;
+            padding: 0.8rem;
+            margin: 1rem 0;
+
+            .info {
+                display: flex;
+                align-items: unset;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    h2 {
+        display: none;
+    }
+
     @media (min-width: 991.98px) {
         .courses {
             display: flex;
@@ -312,21 +330,5 @@ a {
                 margin: 1rem;
             }
         }
-    }
-    .courses {
-        .coursebox {
-            background: #fff;
-            padding: 0.8rem;
-
-            .info {
-                display: flex;
-                align-items: unset;
-                justify-content: space-between;
-            }
-        }
-    }
-
-    h2 {
-        display: none;
     }
 }

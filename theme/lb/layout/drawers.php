@@ -108,7 +108,7 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton
 ];
 
-if ($this->page->pagetype == "my-index" || $this->page->pagetype == "site-index") {
+if ($this->page->pagetype == "my-index" || $this->page->pagetype == "site-index" || $this->page->pagetype == "course-index-category") {
     $templatecontext['catalogue'] = true;
 }
 
