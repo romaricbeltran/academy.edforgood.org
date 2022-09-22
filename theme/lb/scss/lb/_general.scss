@@ -149,6 +149,14 @@ a {
     box-shadow: none !important;
 }
 
+.btn {
+    border-radius: 0;
+}
+
+.rounded {
+    border-radius: 0 !important;
+}
+
 .page-content a {
     font-family: "Ubuntu", Arial !important;
     font-size: 16px !important;
@@ -296,6 +304,11 @@ a {
 // Remove Accueil du navbar
 .primary-navigation li[data-key="home"] {
     display: none;
+}
+
+// Bouton cookie du loginForm
+.login-cookies {
+    align-self: center;
 }
 
 // Style de l'affichage de l'accueil "Liste combinée"
