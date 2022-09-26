@@ -41,6 +41,9 @@ if ($categoryid) {
     $PAGE->set_pagetype('course-index-category');
     $heading = $category->get_formatted_name();
 } else if ($category = core_course_category::user_top()) {
+    header("Status: 301 Moved Permanently", false, 301);
+    header("Location: ".$CFG->wwwroot);
+    exit();
     // Check if there is only one top-level category, if so use that.
     $categoryid = $category->id;
     $PAGE->set_url('/course/index.php');
