@@ -311,6 +311,26 @@ a {
     align-self: center;
 }
 
+// Bannière de l'accueil
+#page.drawers {
+    padding: 0 !important;
+}
+
+.banner-home {
+    background-color: #1f18c0;
+
+    h1 {
+        color: white !important;
+        max-width: 95%;
+        padding: 1.5rem;
+        margin: 0 auto;
+
+        @media (min-width: 991.98px) {
+            max-width: 85%;
+        }
+    }
+}
+
 // Style de l'affichage de l'accueil "Liste combinée"
 .custom-select {
     background: none;

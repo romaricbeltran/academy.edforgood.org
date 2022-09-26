@@ -90,7 +90,13 @@
         {{/ theme_boost/drawer}}
     {{/hasblocks}}
     <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
+        {{#isHome}}
+            <div class="banner-home">
+                <h1>Créons des expériences pédagogiques impactantes !</h1>
+            </div>
+        {{/isHome}}
         <div id="topofscroll" class="main-inner">
+
             <div class="drawer-toggles d-flex">
                 {{#courseindex}}
                     <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">

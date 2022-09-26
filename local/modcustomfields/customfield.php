@@ -15,18 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information
+ * Manage activity modules custom fields
  *
- * @package    mod_attendance
- * @copyright  2011 Artem Andreev <andreev.artem@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package local_modcustomfields
+ * @copyright   2020 Daniel Neis Araujo <daniel@adapta.online>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-defined('MOODLE_INTERNAL') || die();
 
-$plugin->version  = 2022083105;
-$plugin->requires = 2022031100; // Requires 4.0.
-$plugin->release = '4.0.8';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->cron     = 0;
-$plugin->component = 'mod_attendance';
-$plugin->supported = [400, 400];
+require_once('../../config.php');
+require_once($CFG->libdir.'/adminlib.php');
+
+admin_externalpage_setup('local_modcustomfields');
+
+$output = $PAGE->get_renderer('core_customfield');
+$handler = local_modcustomfields\customfield\mod_handler::create();
+$outputpage = new \core_customfield\output\management($handler);
+
+echo $output->header(),
+     $output->heading(new lang_string('pluginname', 'local_modcustomfields')),
+     $output->render($outputpage),
+     $output->footer();
