@@ -100,13 +100,13 @@ class theme_lb_core_renderer extends theme_boost\output\core_renderer {
             $prefix = html_writer::div($contextheader->prefix, 'text-muted text-uppercase small line-height-3');
             $heading = $prefix . $heading;
         }
+        $html .= html_writer::start_tag('div', array('class' => 'page-header-headings'));
+        $html .= $heading;
         if (isset($SESSION->coursecat->description)) {
-            $html .= html_writer::start_tag('div', array('class' => 'page-header-headings'));
-            $html .= html_writer::tag('h1', $heading);
             $html .= html_writer::tag('p', $SESSION->coursecat->description);
-            $html .= html_writer::end_tag('div');
-            unset($SESSION->coursecat);
         }
+        $html .= html_writer::end_tag('div');
+        unset($SESSION->coursecat);
 
         // Buttons.
         if (isset($contextheader->additionalbuttons)) {
