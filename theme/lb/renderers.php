@@ -69,6 +69,76 @@ class theme_lb_core_renderer extends theme_boost\output\core_renderer {
 
         return $this->render_from_template('theme_lb/block', $context);
     }
+
+    /**
+    * Renders the header bar.
+    *
+    * @param context_header $contextheader Header bar object.
+    * @return string HTML for the header bar.
+    */
+    protected function render_context_header(\context_header $contextheader) {
+        global $SESSION;
+
+        // Generate the heading first and before everything else as we might have to do an early return.
+        if (!isset($contextheader->heading)) {
+            $heading = $this->heading($this->page->heading, $contextheader->headinglevel, 'h2');
+        } else {
+            $heading = $this->heading($contextheader->heading, $contextheader->headinglevel, 'h2');
+        }
+
+        // All the html stuff goes here.
+        $html = html_writer::start_div('page-context-header');
+
+        // Image data.
+        if (isset($contextheader->imagedata)) {
+            // Header specific image.
+            $html .= html_writer::div($contextheader->imagedata, 'page-header-image mr-2');
+        }
+
+        // Headings. + Description
+        if (isset($contextheader->prefix)) {
+            $prefix = html_writer::div($contextheader->prefix, 'text-muted text-uppercase small line-height-3');
+            $heading = $prefix . $heading;
+        }
+        if (isset($SESSION->coursecat->description)) {
+            $html .= html_writer::start_tag('div', array('class' => 'page-header-headings'));
+            $html .= html_writer::tag('h1', $heading);
+            $html .= html_writer::tag('p', $SESSION->coursecat->description);
+            $html .= html_writer::end_tag('div');
+            unset($SESSION->coursecat);
+        }
+
+        // Buttons.
+        if (isset($contextheader->additionalbuttons)) {
+            $html .= html_writer::start_div('btn-group header-button-group');
+            foreach ($contextheader->additionalbuttons as $button) {
+                if (!isset($button->page)) {
+                    // Include js for messaging.
+                    if ($button['buttontype'] === 'togglecontact') {
+                        \core_message\helper::togglecontact_requirejs();
+                    }
+                    if ($button['buttontype'] === 'message') {
+                        \core_message\helper::messageuser_requirejs();
+                    }
+                    $image = $this->pix_icon($button['formattedimage'], $button['title'], 'moodle', array(
+                        'class' => 'iconsmall',
+                        'role' => 'presentation'
+                    ));
+                    $image .= html_writer::span($button['title'], 'header-button-title');
+                } else {
+                    $image = html_writer::empty_tag('img', array(
+                        'src' => $button['formattedimage'],
+                        'role' => 'presentation'
+                    ));
+                }
+                $html .= html_writer::link($button['url'], html_writer::tag('span', $image), $button['linkattributes']);
+            }
+            $html .= html_writer::end_div();
+        }
+        $html .= html_writer::end_div();
+
+        return $html;
+    }
 }
 
 class theme_lb_core_course_renderer extends core_course_renderer {
@@ -127,5 +197,92 @@ class theme_lb_core_course_renderer extends core_course_renderer {
             $content .= html_writer::end_tag('ul');
         }
         return $content;
+    }
+
+    /**
+     * Renders HTML to display particular course category - list of it's subcategories and courses
+     *
+     * Invoked from /course/index.php
+     *
+     * @param int|stdClass|core_course_category $category
+     */
+    public function course_category($category) {
+        global $CFG, $SESSION;
+        
+        $usertop = core_course_category::user_top();
+        if (empty($category)) {
+            header("Status: 301 Moved Permanently", false, 301);
+            header("Location: ".$CFG->wwwroot);
+            exit();
+            $coursecat = $usertop;
+        } else if (is_object($category) && $category instanceof core_course_category) {
+            $coursecat = $category;
+        } else {
+            $coursecat = core_course_category::get(is_object($category) ? $category->id : $category);
+        }
+        $site = get_site();
+        $actionbar = new \core_course\output\category_action_bar($this->page, $coursecat);
+        $output = $this->render_from_template('core_course/category_actionbar', $actionbar->export_for_template($this));
+        $SESSION->coursecat=$coursecat;
+
+        if (core_course_category::is_simple_site()) {
+            // There is only one category in the system, do not display link to it.
+            $strfulllistofcourses = get_string('fulllistofcourses');
+            $this->page->set_title("$site->shortname: $strfulllistofcourses");
+        } else if (!$coursecat->id || !$coursecat->is_uservisible()) {
+            $strcategories = get_string('categories');
+            $this->page->set_title("$site->shortname: $strcategories");
+        } else {
+            $strfulllistofcourses = get_string('fulllistofcourses');
+            $this->page->set_title("$site->shortname: $strfulllistofcourses");
+        }
+
+        // Print current category description
+        $chelper = new coursecat_helper();
+        // if ($description = $chelper->get_category_formatted_description($coursecat)) {
+        //     $output .= $this->box($description, array('class' => 'generalbox info'));
+        // }
+
+        // Prepare parameters for courses and categories lists in the tree
+        $chelper->set_show_courses(self::COURSECAT_SHOW_COURSES_AUTO)
+                ->set_attributes(array('class' => 'category-browse category-browse-'.$coursecat->id));
+
+        $coursedisplayoptions = array();
+        $catdisplayoptions = array();
+        $browse = optional_param('browse', null, PARAM_ALPHA);
+        $perpage = optional_param('perpage', $CFG->coursesperpage, PARAM_INT);
+        $page = optional_param('page', 0, PARAM_INT);
+        $baseurl = new moodle_url('/course/index.php');
+        if ($coursecat->id) {
+            $baseurl->param('categoryid', $coursecat->id);
+        }
+        if ($perpage != $CFG->coursesperpage) {
+            $baseurl->param('perpage', $perpage);
+        }
+        $coursedisplayoptions['limit'] = $perpage;
+        $catdisplayoptions['limit'] = $perpage;
+        if ($browse === 'courses' || !$coursecat->get_children_count()) {
+            $coursedisplayoptions['offset'] = $page * $perpage;
+            $coursedisplayoptions['paginationurl'] = new moodle_url($baseurl, array('browse' => 'courses'));
+            $catdisplayoptions['nodisplay'] = true;
+            $catdisplayoptions['viewmoreurl'] = new moodle_url($baseurl, array('browse' => 'categories'));
+            $catdisplayoptions['viewmoretext'] = new lang_string('viewallsubcategories');
+        } else if ($browse === 'categories' || !$coursecat->get_courses_count()) {
+            $coursedisplayoptions['nodisplay'] = true;
+            $catdisplayoptions['offset'] = $page * $perpage;
+            $catdisplayoptions['paginationurl'] = new moodle_url($baseurl, array('browse' => 'categories'));
+            $coursedisplayoptions['viewmoreurl'] = new moodle_url($baseurl, array('browse' => 'courses'));
+            $coursedisplayoptions['viewmoretext'] = new lang_string('viewallcourses');
+        } else {
+            // we have a category that has both subcategories and courses, display pagination separately
+            $coursedisplayoptions['viewmoreurl'] = new moodle_url($baseurl, array('browse' => 'courses', 'page' => 1));
+            $catdisplayoptions['viewmoreurl'] = new moodle_url($baseurl, array('browse' => 'categories', 'page' => 1));
+        }
+        $chelper->set_courses_display_options($coursedisplayoptions)->set_categories_display_options($catdisplayoptions);
+
+        // Display course category tree.
+        $output .= $this->coursecat_tree($chelper, $coursecat);
+
+        return $output;
     }
 }
