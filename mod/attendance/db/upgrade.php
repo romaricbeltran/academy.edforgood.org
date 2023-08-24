@@ -32,7 +32,7 @@ require_once(dirname(__FILE__) . '/upgradelib.php');
  */
 function xmldb_attendance_upgrade($oldversion=0) {
 
-    global $DB;
+    global $DB, $CFG;
     $dbman = $DB->get_manager(); // Loads ddl manager and xmldb classes.
 
     $result = true;
@@ -729,16 +729,36 @@ function xmldb_attendance_upgrade($oldversion=0) {
         // Attendance savepoint reached.
         upgrade_mod_savepoint(true, 2022083100, 'attendance');
     }
-
-    if ($oldversion < 2022083102) {
-        $sql = 'DELETE FROM {attendance_log}
-                 WHERE ID NOT IN (SELECT max(id)
-                                    FROM {attendance_log}
-                                GROUP BY sessionid, studentid, statusid)';
-        $DB->execute($sql);
+    if ($oldversion < 2022083105) {
+        if (!empty($CFG->dbfamily) && $CFG->dbfamily == 'postgres') {
+            $sql = 'DELETE FROM {attendance_log}
+            WHERE id NOT IN (SELECT max(id)
+                               FROM {attendance_log}
+                           GROUP BY sessionid, studentid, statusid)';
+            $DB->execute($sql);
+        } else if (!empty($CFG->dbfamily) && $CFG->dbfamily == 'mysql') {
+            // There is probably a faster way to do this for mysql, but it works.
+            $sql = "SELECT id
+                      FROM {attendance_log}
+                      WHERE id NOT IN (SELECT max(id)
+                               FROM {attendance_log}
+                           GROUP BY sessionid, studentid, statusid)";
+            $records = $DB->get_records_sql($sql);
+            foreach ($records as $record) {
+                $DB->delete_records('attendance_log', ['id' => $record->id]);
+            }
+        } else if (!empty($CFG->dbfamily) && $CFG->dbfamily == 'mssql') {
+            $sql = "DELETE {attendance_log}
+                    WHERE id NOT IN (
+                        SELECT max(id)
+                        FROM {attendance_log}
+                        GROUP BY sessionid, studentid, statusid
+                        )";
+            $DB->execute($sql);
+        }
 
         // Attendance savepoint reached.
-        upgrade_mod_savepoint(true, 2022083102, 'attendance');
+        upgrade_mod_savepoint(true, 2022083105, 'attendance');
     }
 
     return $result;
