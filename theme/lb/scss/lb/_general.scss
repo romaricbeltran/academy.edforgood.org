@@ -293,6 +293,10 @@ a {
     background-color: #1f18c0;
 }
 
+.btn-outline-secondary:hover span, .show>.btn-outline-secondary.dropdown-toggle span {
+    color: white;
+}
+
 .show > .btn-outline-secondary.dropdown-toggle,
 .btn-outline-secondary:not(:disabled):not(.disabled):active {
     background-color: #1f18c0;
@@ -301,6 +305,11 @@ a {
 
 .btn-outline-secondary {
     box-shadow: none !important;
+}
+
+// Bouton tiroir de blocs
+.drawer-toggles .drawer-toggler .btn span {
+    color: white;
 }
 
 // Remove Accueil du navbar
@@ -416,4 +425,14 @@ a {
             }
         }
     }
+}
+
+// Fix pastille calendrier
+.maincalendar .calendarmonth td .day-number-circle .day-number {
+    padding: 15% 4px;
+}
+
+.maincalendar .calendarmonth td.today .day-number-circle .day-number {
+    padding: 15% 4px;
+    color: white;
 }
