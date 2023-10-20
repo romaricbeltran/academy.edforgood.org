@@ -174,18 +174,16 @@
         </div>
     {{/cansignup}}
 
-    <!-- ignore random button connexion
-        {{#canloginasguest}}
-            <div class="login-divider"></div>
-            <p class="login-heading">{{#str}}someallowguest{{/str}}</^^>
-            <form action="{{loginurl}}" method="post" id="guestlogin">
-                <input type="hidden" name="logintoken" value="{{logintoken}}">
-                <input type="hidden" name="username" value="guest" />
-                <input type="hidden" name="password" value="guest" />
-                <button class="btn btn-secondary" type="submit" id="loginguestbtn">{{#str}}loginguest{{/str}}</button>
-            </form>
-        {{/canloginasguest}}
-    -->
+    {{#canloginasguest}}
+        <div class="login-divider"></div>
+        <p class="login-heading">{{#str}}someallowguest{{/str}}</^^>
+        <form action="{{loginurl}}" method="post" id="guestlogin">
+            <input type="hidden" name="logintoken" value="{{logintoken}}">
+            <input type="hidden" name="username" value="guest" />
+            <input type="hidden" name="password" value="guest" />
+            <button class="btn btn-secondary" type="submit" id="loginguestbtn">{{#str}}loginguest{{/str}}</button>
+        </form>
+    {{/canloginasguest}}
     
     <div class="login-divider"></div>
     <div class="d-flex">
