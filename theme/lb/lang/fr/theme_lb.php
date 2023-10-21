@@ -25,3 +25,19 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['defaultcourseteacher'] = "Formateur·trice";
+$string['logo'] = 'Logo';
+$string['logodesc'] = 'Le logo est affiché dans le header.';
+$string['favicon'] = 'Favicon.';
+$string['favicondesc'] = 'La favicon est affichée dans l\'onglet du navigateur.';
+$string['background-color'] = 'Couleur de fond';
+$string['background-color_desc'] = 'La couleur de fond du site.';
+$string['block-background-color'] = 'Couleur de fond des blocs';
+$string['block-background-color_desc'] = 'La couleur de fond des blocs.';
+$string['button-color'] = 'Couleur des boutons';
+$string['button-color_desc'] = 'La couleur des boutons.';
+$string['link-color'] = 'Couleur des liens';
+$string['link-color_desc'] = 'La couleur des liens.';
+$string['main-title-color'] = 'Couleur des titres principaux';
+$string['main-title-color_desc'] = 'La couleur des titres principaux.';
+$string['secondary-title-color'] = 'Couleur des titres secondaires';
+$string['secondary-title-color_desc'] = 'La couleur des titres secondaires.';

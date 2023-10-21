@@ -4,12 +4,12 @@
     color: #fff;
 
     a:not(.btn) {
-        color: #fff;
+        color: $link-color;
     }
 
     .contactsitesupport {
-        border: 1px solid #fff;
-        color: #fff;
+        border: 1px solid $link-color;
+        color: $link-color;
     }
 
     .popover.footer .popover-body .footer-section {
@@ -46,7 +46,7 @@
 
                 a {
                     text-decoration: none;
-                    color: #fff;
+                    color: $link-color;
                     width: 38px;
                     height: 38px;
 
@@ -161,7 +161,7 @@
         background-color: $moodle-color;
         text-align: center;
         min-height: inherit;
-        color: #fff;
+        color: $link-color;
         margin-bottom: 0;
 
         .madeby {

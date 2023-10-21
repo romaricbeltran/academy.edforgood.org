@@ -34,6 +34,10 @@ body {
     border: none;
     -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
     box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+
+    &.dashboard-card {
+        background-color: $block-background-color;
+    }
 }
 
 .lb-container-fluid,
@@ -53,7 +57,7 @@ body {
 .dropdown-item:hover,
 .dropdown-item:focus,
 .dropdown-item:focus-within {
-    background-color: darken($brand-primary, 10%);
+    background-color: darken($button-color, 10%);
 }
 
 .shadow {
@@ -105,7 +109,7 @@ h1 {
     line-height: 1.4em !important;
     letter-spacing: 0 !important;
     text-align: left;
-    color: #1d2125 !important;
+    color: $main-title-color !important;
 }
 
 h2 {
@@ -115,7 +119,7 @@ h2 {
     line-height: 1.4em !important;
     letter-spacing: 0 !important;
     text-align: left;
-    color: #1f18c0 !important;
+    color: $secondary-title-color !important;
 }
 
 h3 {
@@ -124,14 +128,17 @@ h3 {
     font-size: 24px !important;
     line-height: 1.4em !important;
     letter-spacing: 0 !important;
-    color: #1d2125;
+    color: $secondary-title-color;
     padding-bottom: 15px !important;
 }
 
 p,
 li,
-span,
-h5 {
+h5,
+label,
+td,
+div,
+input {
     font-family: "Ubuntu", Arial !important;
     font-size: 16px !important;
     line-height: 1.4em !important;
@@ -146,9 +153,13 @@ a {
     font-family: "Ubuntu", Arial !important;
     font-size: 16px !important;
     line-height: 1.4em;
-    color: #1f18c0;
+    color: $link-color;
     transition: all 0.25s ease-out;
     box-shadow: none !important;
+}
+
+a.dimmed {
+    color: $link-color !important;
 }
 
 .btn {
@@ -164,11 +175,11 @@ a {
     font-size: 16px !important;
     line-height: 1.4em;
     text-decoration: underline !important;
-    color: #1f18c0 !important;
+    color: $link-color !important;
     transition: all 0.25s ease-out;
 
     &:hover {
-        color: #1f18c0 !important;
+        color: $link-color !important;
     }
 }
 
@@ -177,7 +188,7 @@ a {
     font-family: ptserif, monospace !important;
     font-weight: bold !important;
     font-size: 20px !important;
-    color: #1f18c0 !important;
+    color: $button-color !important;
 }
 
 // Couleur des boutons
@@ -187,15 +198,16 @@ a {
     font-size: 16px !important;
     line-height: 1.4em;
     transition: all 0.25s ease-out;
-    background-color: #1f18c0;
+    background-color: $button-color;
+    border-color: $button-color;
     border-radius: 0;
     color: white;
 
     &:hover,
     &:focus,
     .focus {
-        color: #1f18c0;
-        border-color: #1f18c0;
+        color: $button-color;
+        border-color: $button-color;
         background-color: transparent;
         box-shadow: none;
     }
@@ -221,9 +233,9 @@ a {
     > #course-category-listings
     .listing-pagination
     .yui3-button.active-page.dropdown-toggle {
-    border-color: #1f18c0 !important;
+    border-color: $button-color !important;
     background-color: transparent !important;
-    color: #1f18c0 !important;
+    color: $button-color !important;
     box-shadow: none !important;
 }
 
@@ -236,15 +248,15 @@ a {
     }
 
     .courseindex-item.pageitem {
-        background-color: #1f18c0;
-        border-color: #1f18c0;
+        background-color: $button-color;
+        border-color: $button-color;
         box-shadow: none !important;
 
         &:hover,
         &:focus,
         &:active {
-            background-color: #1f18c0;
-            border-color: #1f18c0;
+            background-color: $button-color;
+            border-color: $button-color;
             box-shadow: none !important;
         }
     }
@@ -290,7 +302,7 @@ a {
 }
 
 .btn-outline-secondary:hover {
-    background-color: #1f18c0;
+    background-color: $button-color;
 }
 
 .btn-outline-secondary:hover span, .show>.btn-outline-secondary.dropdown-toggle span {
@@ -299,8 +311,8 @@ a {
 
 .show > .btn-outline-secondary.dropdown-toggle,
 .btn-outline-secondary:not(:disabled):not(.disabled):active {
-    background-color: #1f18c0;
-    border-color: #1f18c0;
+    background-color: $button-color;
+    border-color: $button-color;
 }
 
 .btn-outline-secondary {
@@ -328,7 +340,7 @@ a {
 }
 
 .banner-home {
-    background-color: #1f18c0;
+    background-color: $brand-primary;
 
     h1 {
         color: white !important;
@@ -366,7 +378,7 @@ a {
 
     .courses {
         .coursebox {
-            background: #fff;
+            background: $block-background-color;
             padding: 0.8rem;
             margin: 1rem 0;
         }
@@ -390,7 +402,7 @@ a {
                 line-height: 1.4em !important;
                 letter-spacing: 0 !important;
                 text-align: left;
-                color: #1f18c0 !important;
+                color: $secondary-title-color !important;
             }
         }
 
@@ -435,4 +447,8 @@ a {
 .maincalendar .calendarmonth td.today .day-number-circle .day-number {
     padding: 15% 4px;
     color: white;
+}
+
+.maincalendar .calendarmonth td .day-number-circle {
+    line-height: inherit;
 }

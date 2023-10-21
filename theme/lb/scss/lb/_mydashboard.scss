@@ -24,11 +24,11 @@
         .header-action
         .btn-group
         > .btn:not(:last-child):not(.dropdown-toggle) {
-        background-color: #1f18c0;
+        background-color: $button-color;
         color: #fff;
 
         &:hover {
-            background-color: #1f18c0;
+            background-color: $button-color;
             color: white !important;
 
             .text-dark {

@@ -50,8 +50,13 @@ function theme_lb_get_pre_scss($theme) {
     $scss = '';
     $configurable = [
         // Config key => [variableName, ...].
-        'brandcolor' => ['brand-primary'],
-        'secondarymenucolor' => 'secondary-menu-color'
+        // 'brandcolor' => ['brand-primary'],
+        'backgroundcolor' => ['background'],
+        'blockbackgroundcolor' => ['block-background-color'],
+        'buttoncolor' => ['button-color'],
+        'linkcolor' => ['link-color'],
+        'maintitlecolor' => ['main-title-color'],
+        'secondarytitlecolor' => ['secondary-title-color']
     ];
 
     // Prepend variables first.

@@ -1,9 +1,15 @@
-$brand-primary: #1f18c0 !default;
+$background: #fdf5e5 !default;
+$block-background-color : #ffffff !default;
+$button-color: #1f18c0 !default;
+$link-color: #1f18c0 !default;
+
+$main-title-color: #1d2125 !default;
+$secondary-title-color: #1f18c0 !default;
+
+$brand-primary: $button-color !default;
+$secondary-menu-color: $brand-primary !default;
 $green: #64a44e !default;
 $gold: #f7bf29 !default;
-$background: #fdf5e5;
-
-$secondary-menu-color: $brand-primary !default;
 
 $moodle-color: #f98012 !default;
 $facebook-color: #4167b2 !default;
