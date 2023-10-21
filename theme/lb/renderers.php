@@ -25,7 +25,9 @@ class theme_lb_core_renderer extends theme_boost\output\core_renderer {
         $context->sitename = format_string($SITE->fullname, true,
                 ['context' => context_course::instance(SITEID), "escape" => false]);
 
+        # LB code start - Render custom loginform
         return $this->render_from_template('theme_lb/loginform', $context);
+        # LB code end
     }
 
     /**
@@ -63,8 +65,9 @@ class theme_lb_core_renderer extends theme_boost\output\core_renderer {
             $context->controls = $this->block_controls($bc->controls, $id);
         }
         
+        # LB code start - Block my-overview could only be on main page (where we don't want block-bg)
         if ($context->type == "myoverview") {
-            $context->catalogue = true;
+            $context->isMainPage = true;
         }
 
         return $this->render_from_template('theme_lb/block', $context);
@@ -95,11 +98,13 @@ class theme_lb_core_renderer extends theme_boost\output\core_renderer {
             $html .= html_writer::div($contextheader->imagedata, 'page-header-image mr-2');
         }
 
-        // Headings. + Description
+        // Headings + Description
         if (isset($contextheader->prefix)) {
             $prefix = html_writer::div($contextheader->prefix, 'text-muted text-uppercase small line-height-3');
             $heading = $prefix . $heading;
         }
+
+        # LB code start - Add description below title on category page
         $html .= html_writer::start_tag('div', array('class' => 'page-header-headings'));
         $html .= $heading;
         if (isset($SESSION->coursecat->description)) {
@@ -107,6 +112,7 @@ class theme_lb_core_renderer extends theme_boost\output\core_renderer {
         }
         $html .= html_writer::end_tag('div');
         unset($SESSION->coursecat);
+        # LB code end
 
         // Buttons.
         if (isset($contextheader->additionalbuttons)) {
@@ -152,8 +158,13 @@ class theme_lb_core_course_renderer extends core_course_renderer {
      */
     protected function course_name(coursecat_helper $chelper, core_course_list_element $course): string {
         $content = '';
-        $nametag = 'div';
-        
+        # LB code start - On category page coursename = div style (not h3 style)
+        // if ($chelper->get_show_courses() >= self::COURSECAT_SHOW_COURSES_EXPANDED) {
+        //     $nametag = 'h3';
+        // } else {
+            $nametag = 'div';
+        // }
+        # LB code end
         $coursename = $chelper->get_course_formatted_name($course);
         $coursenamelink = html_writer::link(new moodle_url('/course/view.php', ['id' => $course->id]),
             $coursename, ['class' => $course->visible ? 'aalink' : 'aalink dimmed']);
@@ -175,31 +186,6 @@ class theme_lb_core_course_renderer extends core_course_renderer {
     }
 
     /**
-     * Returns HTML to display course contacts.
-     *
-     * @param core_course_list_element $course
-     * @return string
-     */
-    protected function course_contacts(core_course_list_element $course) {
-        $content = '';
-        if ($course->has_course_contacts()) {
-            $content .= html_writer::start_tag('ul', ['class' => 'teachers']);
-            foreach ($course->get_course_contacts() as $coursecontact) {
-                $rolenames = array_map(function ($role) {
-                    return $role->displayname;
-                }, $coursecontact['roles']);
-                $name = html_writer::tag('span', implode(", ", $rolenames).' : ', ['class' => 'font-weight-bold']);
-                $name .= html_writer::link(new moodle_url('/user/view.php',
-                        ['id' => $coursecontact['user']->id, 'course' => SITEID]),
-                        $coursecontact['username']);
-                $content .= html_writer::tag('li', $name);
-            }
-            $content .= html_writer::end_tag('ul');
-        }
-        return $content;
-    }
-
-    /**
      * Renders HTML to display particular course category - list of it's subcategories and courses
      *
      * Invoked from /course/index.php
@@ -211,9 +197,11 @@ class theme_lb_core_course_renderer extends core_course_renderer {
         
         $usertop = core_course_category::user_top();
         if (empty($category)) {
+            # LB code start - Redirect if it's empty 
             header("Status: 301 Moved Permanently", false, 301);
             header("Location: ".$CFG->wwwroot);
             exit();
+            # LB code end
             $coursecat = $usertop;
         } else if (is_object($category) && $category instanceof core_course_category) {
             $coursecat = $category;
@@ -239,9 +227,11 @@ class theme_lb_core_course_renderer extends core_course_renderer {
 
         // Print current category description
         $chelper = new coursecat_helper();
-        // if ($description = $chelper->get_category_formatted_description($coursecat)) {
-        //     $output .= $this->box($description, array('class' => 'generalbox info'));
-        // }
+        # LB code start - Hide description below content filter on category page
+        # if ($description = $chelper->get_category_formatted_description($coursecat)) {
+        #     $output .= $this->box($description, array('class' => 'generalbox info'));
+        # }
+        # LB code end
 
         // Prepare parameters for courses and categories lists in the tree
         $chelper->set_show_courses(self::COURSECAT_SHOW_COURSES_AUTO)

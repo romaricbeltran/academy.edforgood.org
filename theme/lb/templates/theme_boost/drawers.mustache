@@ -90,11 +90,13 @@
         {{/ theme_boost/drawer}}
     {{/hasblocks}}
     <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
-        {{#isHome}}
-            <div class="banner-home">
-                <h1>Créons des expériences pédagogiques impactantes !</h1>
-            </div>
-        {{/isHome}}
+        {{! LB code start - Display banner on homepage }}
+        {{! {{#isHome}}
+        {{!    <div class="banner-home">
+        {{!        <h1>Créons des expériences pédagogiques impactantes !</h1>
+        {{!    </div>
+        {{! {{/isHome}}
+        {{! LB code end }}
         <div id="topofscroll" class="main-inner">
 
             <div class="drawer-toggles d-flex">
@@ -132,7 +134,11 @@
                     </div>
                 {{/hasblocks}}
             </div>
-            {{^isHome}}{{{ output.full_header }}}{{/isHome}}
+            {{! LB code start - Don't display full_header on homepage }}
+            {{^isHome}}
+                {{{ output.full_header }}}
+            {{/isHome}}
+            {{! LB code end }}
             {{#secondarymoremenu}}
                 <div class="secondary-navigation d-print-none">
                     {{> core/moremenu}}
@@ -145,14 +151,17 @@
                         <div> {{{ regionmainsettingsmenu }}} </div>
                     </div>
                     {{/hasregionmainsettingsmenu}}
-                    <section id="region-main" {{#catalogue}}style="background: none !important;"{{/catalogue}} aria-label="{{#str}}content{{/str}}">
-
+                    {{! LB code start - Don't display background on main section in main pages (because it hide blocks margin) }}
+                    <section id="region-main" {{#isMainPage}}style="background: none !important;"{{/isMainPage}} aria-label="{{#str}}content{{/str}}">
+                    {{! LB code end }}
                         {{#hasregionmainsettingsmenu}}
                             <div class="region_main_settings_menu_proxy"></div>
                         {{/hasregionmainsettingsmenu}}
                         {{{ output.course_content_header }}}
                         {{#headercontent}}
+                            {{! LB code start - Don't display completion header on activity page }}
                             {{> theme_lb/activity_header }}
+                            {{! LB code end }}
                         {{/headercontent}}
                         {{#overflow}}
                             <div class="container-fluid tertiary-navigation">

@@ -108,8 +108,9 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton
 ];
 
+# LB code start - "Homepage", "My dashboard" & "My courses" are main pages
 if ($this->page->pagetype == "my-index" || $this->page->pagetype == "site-index" || $this->page->pagetype == "course-index-category") {
-    $templatecontext['catalogue'] = true;
+    $templatecontext['isMainPage'] = true;
 }
 
 if ($this->page->pagetype == "site-index") {
@@ -117,3 +118,4 @@ if ($this->page->pagetype == "site-index") {
 }
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
+# LB code end

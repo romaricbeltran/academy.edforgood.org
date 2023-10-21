@@ -150,7 +150,9 @@
     {{#hasidentityproviders}}
         <div class="login-divider"></div>
         <div class="login-identityproviders">
+            {{! LB code start - Replace h2 by p}}
             <p class="login-heading">{{#str}} potentialidps, auth {{/str}}</p>
+            {{! LB code end }}
             {{#identityproviders}}
                 <a class="btn login-identityprovider-btn btn-block" href="{{url}}">
                     {{#iconurl}}
@@ -164,7 +166,9 @@
     {{#hasinstructions}}
         <div class="login-divider"></div>
         <div class="login-instructions {{#cansignup}}mb-3{{/cansignup}}">
+            {{! LB code start - Replace h2 by p}}
             <p class="login-heading">{{#str}}firsttime{{/str}}</p>
+            {{! LB code end }}
             {{{instructions}}}
         </div>
     {{/hasinstructions}}
@@ -176,7 +180,9 @@
 
     {{#canloginasguest}}
         <div class="login-divider"></div>
-        <p class="login-heading">{{#str}}someallowguest{{/str}}</^^>
+        {{! LB code start - Replace h2 by p}}
+        <p class="login-heading">{{#str}}someallowguest{{/str}}</p>
+        {{! LB code end }}
         <form action="{{loginurl}}" method="post" id="guestlogin">
             <input type="hidden" name="logintoken" value="{{logintoken}}">
             <input type="hidden" name="username" value="guest" />
@@ -193,11 +199,13 @@
             </div>
             <div class="divider border-left align-self-center mx-3"></div>
         {{/languagemenu}}
-        <a class="login-cookies" href="" {{!
+        {{! LB code start - Replace a by button}}
+        <button type="button" class="btn btn-secondary login-cookies" href="" {{!
         }} data-modal="alert"{{!
         }} data-modal-title-str='["cookiesenabled", "core"]' {{!
         }} data-modal-content-str='["cookiesenabled_help_html", "core"]'{{!
-        }}>{{#str}}cookiesnotice{{/str}}</a>
+        }}>{{#str}}cookiesnotice{{/str}}</button>
+        {{! LB code end }}
     </div>
 </div>
 

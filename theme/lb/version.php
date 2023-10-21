@@ -18,12 +18,12 @@
  * LB.
  *
  * @package    theme_lb
- * @copyright  2022 Romaric Beltran
+ * @copyright  2023 Romaric Beltran
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2022041900;
+$plugin->version   = 2023102000;
 $plugin->requires  = 2022041200;
 $plugin->component = 'theme_lb';

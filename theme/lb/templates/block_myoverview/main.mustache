@@ -24,6 +24,9 @@
 }}
 
 <div id="block-myoverview-{{uniqid}}" class="block-myoverview block-cards" data-region="myoverview" role="navigation">
+    {{! LB code start - Hide line}}
+    {{! <hr class="mt-0"/> }}
+    {{! LB code end}}
 
     <div data-region="filter" class="d-flex align-items-center my-2" aria-label="{{#str}} aria:controls, block_myoverview {{/str}}">
         {{> block_myoverview/nav-grouping-selector }}
@@ -31,6 +34,12 @@
         {{> block_myoverview/nav-search-widget }}
 
         {{> block_myoverview/nav-sort-selector }}
+
+        {{! LB code start - Hide display selector}}
+        {{!{{#displaydropdown}}
+        {{!    {{> block_myoverview/nav-display-selector }}
+        {{!{{/displaydropdown}}
+        {{! LB code end}}
     </div>
 
     <div class="container-fluid p-0">

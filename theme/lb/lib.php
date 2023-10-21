@@ -31,11 +31,11 @@ function theme_lb_get_main_scss_content($theme) {
     }
 
     // LB scss.
-    $lbvariables = file_get_contents($CFG->dirroot . '/theme/lb/scss/lb/_variables.scss');
-    $lb = file_get_contents($CFG->dirroot . '/theme/lb/scss/default.scss');
+    $LBvariables = file_get_contents($CFG->dirroot . '/theme/lb/scss/lb/_variables.scss');
+    $LB = file_get_contents($CFG->dirroot . '/theme/lb/scss/default.scss');
 
     // Combine them together.
-    $allscss = $lbvariables . "\n" . $scss . "\n" . $lb;
+    $allscss = $LBvariables . "\n" . $scss . "\n" . $LB;
 
     return $allscss;
 }
