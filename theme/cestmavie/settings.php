@@ -40,6 +40,15 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');                                                                        
     $page->add($setting);
 
+    // Variable $backgroundheader.                                                                                                       
+    // We use an empty default value because the default colour should come from the preset.                                        
+    $name = 'theme_cestmavie/backgroundheadercolor';                                                                                               
+    $title = get_string('background-header-color', 'theme_cestmavie');                                                                               
+    $description = get_string('background-header-color_desc', 'theme_cestmavie');                                                                    
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');                                               
+    $setting->set_updatedcallback('theme_reset_all_caches');                                                                        
+    $page->add($setting);
+
     // Variable $blockbackgroundcolor.                                                                                                       
     // We use an empty default value because the default colour should come from the preset.                                        
     $name = 'theme_cestmavie/blockbackgroundcolor';                                                                                               

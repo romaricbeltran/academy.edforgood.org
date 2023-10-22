@@ -286,8 +286,8 @@ a.dimmed {
 }
 
 // Retire background white du header
-#page-wrapper .bg-white {
-    background: none !important;
+.navbar {
+    background: $background-header !important;
 }
 
 // style des formulaires Mes Cours
