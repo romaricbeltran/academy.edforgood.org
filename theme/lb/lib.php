@@ -52,6 +52,7 @@ function theme_lb_get_pre_scss($theme) {
         // Config key => [variableName, ...].
         // 'brandcolor' => ['brand-primary'],
         'backgroundcolor' => ['background'],
+        'backgroundheadercolor' => ['background-header'],
         'blockbackgroundcolor' => ['block-background-color'],
         'buttoncolor' => ['button-color'],
         'linkcolor' => ['link-color'],
