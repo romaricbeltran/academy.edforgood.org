@@ -2,6 +2,12 @@ body {
     background-color: $background !important; /* stylelint-disable-line */
 }
 
+#page-site-index #page-header,
+#page-my-index #page-header,
+#page-course-index-category #page-header {
+    margin: 0 auto;
+}
+
 #page-header {
     margin: 1.25rem auto;
     padding: 0;
@@ -109,7 +115,7 @@ h1 {
     line-height: 1.4em !important;
     letter-spacing: 0 !important;
     text-align: left;
-    color: $main-title-color !important;
+    color: $secondary-title-color !important;
 }
 
 h2 {

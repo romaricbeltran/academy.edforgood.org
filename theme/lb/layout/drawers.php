@@ -108,9 +108,9 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton
 ];
 
-# LB code start - "Homepage", "My dashboard" & "My courses" are main pages
-if ($this->page->pagetype == "my-index" || $this->page->pagetype == "site-index" || $this->page->pagetype == "course-index-category") {
-    $templatecontext['isMainPage'] = true;
+# LB code start - Hide region-main's background on Homepage, My dashboard & My courses (<=> my-index), and Category-page + Display banner on homepage
+if ($this->page->pagetype == "site-index" || $this->page->pagetype == "my-index" || $this->page->pagetype == "course-index-category") {
+    $templatecontext['hideregionmainbackground'] = true;
 }
 
 if ($this->page->pagetype == "site-index") {

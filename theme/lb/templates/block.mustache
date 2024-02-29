@@ -20,9 +20,9 @@
 {{/showskiplink}}
 
 {{! Start Block Container }}
-{{! LB code start - Don't display block background specialy on block my-overview (for all main pages)}}
+{{! LB code start - Don't display block background on my-overview block (there is already background on the cards)}}
 <section id="{{id}}"
-     class="{{#hidden}}hidden{{/hidden}} {{class}} {{#hascontrols}}block_with_controls{{/hascontrols}} {{^isMainPage}}card{{/isMainPage}} mb-3"
+     class="{{#hidden}}hidden{{/hidden}} {{class}} {{#hascontrols}}block_with_controls{{/hascontrols}} {{^isBlockMyOverview}}card{{/isBlockMyOverview}} mb-3"
      role="{{ariarole}}"
      data-block="{{type}}"
      data-instance-id="{{blockinstanceid}}"

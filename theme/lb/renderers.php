@@ -6,31 +6,6 @@ require_once($CFG->dirroot . "/course/renderer.php");
 class theme_lb_core_renderer extends theme_boost\output\core_renderer {
 
     /**
-     * Renders the login form.
-     *
-     * @param \core_auth\output\login $form The renderable.
-     * @return string
-     */
-    public function render_login(\core_auth\output\login $form) {
-        global $CFG, $SITE;
-
-        $context = $form->export_for_template($this);
-
-        $context->errorformatted = $this->error_text($context->error);
-        $url = $this->get_logo_url();
-        if ($url) {
-            $url = $url->out(false);
-        }
-        $context->logourl = $url;
-        $context->sitename = format_string($SITE->fullname, true,
-                ['context' => context_course::instance(SITEID), "escape" => false]);
-
-        # LB code start - Render custom loginform
-        return $this->render_from_template('theme_lb/loginform', $context);
-        # LB code end
-    }
-
-    /**
      * Prints a nice side block with an optional header.
      *
      * @param block_contents $bc HTML for the content
@@ -65,9 +40,9 @@ class theme_lb_core_renderer extends theme_boost\output\core_renderer {
             $context->controls = $this->block_controls($bc->controls, $id);
         }
         
-        # LB code start - Block my-overview could only be on main page (where we don't want block-bg)
+        # LB code start - Block my-overview (where we don't want block-bg)
         if ($context->type == "myoverview") {
-            $context->isMainPage = true;
+            $context->isBlockMyOverview = true;
         }
 
         return $this->render_from_template('theme_lb/block', $context);
@@ -104,14 +79,14 @@ class theme_lb_core_renderer extends theme_boost\output\core_renderer {
             $heading = $prefix . $heading;
         }
 
-        # LB code start - Add description below title on category page
-        $html .= html_writer::start_tag('div', array('class' => 'page-header-headings'));
-        $html .= $heading;
-        if (isset($SESSION->coursecat->description)) {
-            $html .= html_writer::tag('p', $SESSION->coursecat->description);
-        }
-        $html .= html_writer::end_tag('div');
-        unset($SESSION->coursecat);
+        # LB code start - Hide title on home page, Add description below title on category page
+        if ($this->page->pagetype !== "site-index") {
+            if (isset($SESSION->coursecat->description)) {
+                $heading .= $SESSION->coursecat->description;
+                unset($SESSION->coursecat);
+            }
+            $html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings'));
+        }    
         # LB code end
 
         // Buttons.
@@ -197,11 +172,6 @@ class theme_lb_core_course_renderer extends core_course_renderer {
         
         $usertop = core_course_category::user_top();
         if (empty($category)) {
-            # LB code start - Redirect if it's empty 
-            header("Status: 301 Moved Permanently", false, 301);
-            header("Location: ".$CFG->wwwroot);
-            exit();
-            # LB code end
             $coursecat = $usertop;
         } else if (is_object($category) && $category instanceof core_course_category) {
             $coursecat = $category;
