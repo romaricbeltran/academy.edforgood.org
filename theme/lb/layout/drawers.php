@@ -105,7 +105,8 @@ $templatecontext = [
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'overflow' => $overflow,
     'headercontent' => $headercontent,
-    'addblockbutton' => $addblockbutton
+    'addblockbutton' => $addblockbutton,
+    'bannerimg' => $OUTPUT->image_url('banner-img', 'theme')
 ];
 
 # LB code start - Hide region-main's background on Homepage, My dashboard & My courses (<=> my-index), and Category-page + Display banner on homepage
