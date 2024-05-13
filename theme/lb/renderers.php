@@ -245,4 +245,106 @@ class theme_lb_core_course_renderer extends core_course_renderer {
 
         return $output;
     }
+
+    /**
+     * Displays one course in the list of courses.
+     *
+     * This is an internal function, to display an information about just one course
+     * please use {@link core_course_renderer::course_info_box()}
+     *
+     * @param coursecat_helper $chelper various display options
+     * @param core_course_list_element|stdClass $course
+     * @param string $additionalclasses additional classes to add to the main <div> tag (usually
+     *    depend on the course position in list - first/last/even/odd)
+     * @return string
+     */
+    protected function coursecat_coursebox(coursecat_helper $chelper, $course, $additionalclasses = '') {
+        if (!isset($this->strings->summary)) {
+            $this->strings->summary = get_string('summary');
+        }
+        if ($chelper->get_show_courses() <= self::COURSECAT_SHOW_COURSES_COUNT) {
+            return '';
+        }
+        if ($course instanceof stdClass) {
+            $course = new core_course_list_element($course);
+        }
+        $content = '';
+        $classes = trim('coursebox clearfix '. $additionalclasses);
+        if ($chelper->get_show_courses() < self::COURSECAT_SHOW_COURSES_EXPANDED) {
+            $classes .= ' collapsed';
+        }
+
+        // .coursebox
+        $content .= html_writer::start_tag('div', array(
+            'class' => $classes,
+            'data-courseid' => $course->id,
+            'data-type' => self::COURSECAT_TYPE_COURSE,
+        ));
+
+        $content .= html_writer::start_tag('div', array('class' => 'info'));
+        # LB code start - On enrol page, remove course title from the box content
+        if ($this->page->pagetype !== "enrol-index") {
+            $content .= $this->course_name($chelper, $course);
+        }
+        # LB code end
+        $content .= $this->course_enrolment_icons($course);
+        $content .= html_writer::end_tag('div');
+
+        $content .= html_writer::start_tag('div', array('class' => 'content'));
+        $content .= $this->coursecat_coursebox_content($chelper, $course);
+        $content .= html_writer::end_tag('div');
+
+        $content .= html_writer::end_tag('div'); // .coursebox
+        return $content;
+    }
+
+    /**
+     * Returns HTML to display course content (summary, course contacts and optionally category name)
+     *
+     * This method is called from coursecat_coursebox() and may be re-used in AJAX
+     *
+     * @param coursecat_helper $chelper various display options
+     * @param stdClass|core_course_list_element $course
+     * @return string
+     */
+    protected function coursecat_coursebox_content(coursecat_helper $chelper, $course) {
+        if ($chelper->get_show_courses() < self::COURSECAT_SHOW_COURSES_EXPANDED) {
+            return '';
+        }
+        if ($course instanceof stdClass) {
+            $course = new core_course_list_element($course);
+        }
+
+        # LB code start - On enrol page, divide content structure
+        $content = \html_writer::start_tag('div', ['class' => 'd-flex course-presentation']);
+        $content .= $this->course_overview_files($course);
+        $content .= \html_writer::start_tag('div', ['class' => 'flex-grow-1']);
+        $content .= $this->course_summary($chelper, $course);
+        $content .= \html_writer::end_tag('div');
+        $content .= \html_writer::end_tag('div');
+        $content .= $this->course_contacts($course);
+        // $content .= $this->course_category_name($chelper, $course);
+        // $content .= $this->course_custom_fields($course);
+        # LB code end
+        return $content;
+    }
+
+    /**
+     * Renders course info box.
+     *
+     * @param stdClass $course
+     * @return string
+     */
+    public function course_info_box(stdClass $course) {
+        $content = '';
+        $content .= $this->output->box_start('generalbox info');
+        $chelper = new coursecat_helper();
+        $chelper->set_show_courses(self::COURSECAT_SHOW_COURSES_EXPANDED);
+        $content .= $this->coursecat_coursebox($chelper, $course);
+        $content .= $this->output->box_end();
+        # LB code start - On enrol page, display enrol options title on the right place
+        $content .= $this->output->heading(get_string('enrolmentoptions','enrol'), 2 , 'enrolmentoptions-title');
+        # LB code end
+        return $content;
+    }
 }
