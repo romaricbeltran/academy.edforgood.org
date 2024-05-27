@@ -316,13 +316,23 @@ class theme_lb_core_course_renderer extends core_course_renderer {
         }
 
         # LB code start - On enrol page, divide content structure
-        $content = \html_writer::start_tag('div', ['class' => 'd-flex course-presentation']);
+        $content = \html_writer::start_tag('div', ['class' => ($this->course_summary($chelper, $course) ? 'course-presentation' : '')]);
+        if ($this->page->pagetype == "enrol-index") {
+            if ($this->course_summary($chelper, $course)) {
+                $content .= \html_writer::tag('h2', 'À propos de ce cours', ['class' => 'about-course']);
+            }
+        }
         $content .= $this->course_overview_files($course);
-        $content .= \html_writer::start_tag('div', ['class' => 'flex-grow-1']);
         $content .= $this->course_summary($chelper, $course);
         $content .= \html_writer::end_tag('div');
-        $content .= \html_writer::end_tag('div');
+
+        $content .= \html_writer::start_tag('div', ['class' => 'teachers-presentation']);
+        if ($this->page->pagetype == "enrol-index") {
+            $content .= \html_writer::tag('h2', 'Équipe pédagogique', ['class' => 'about-teachers']);
+        }
         $content .= $this->course_contacts($course);
+        $content .= \html_writer::end_tag('div');
+        
         // $content .= $this->course_category_name($chelper, $course);
         // $content .= $this->course_custom_fields($course);
         # LB code end
@@ -338,12 +348,15 @@ class theme_lb_core_course_renderer extends core_course_renderer {
     public function course_info_box(stdClass $course) {
         $content = '';
         $content .= $this->output->box_start('generalbox info');
+        # LB code start - On enrol page, remove the main box default padding 
+        $content = str_replace('py-3', '', $content);
+        # LB code end
         $chelper = new coursecat_helper();
         $chelper->set_show_courses(self::COURSECAT_SHOW_COURSES_EXPANDED);
         $content .= $this->coursecat_coursebox($chelper, $course);
         $content .= $this->output->box_end();
         # LB code start - On enrol page, display enrol options title on the right place
-        $content .= $this->output->heading(get_string('enrolmentoptions','enrol'), 2 , 'enrolmentoptions-title');
+        $content .= $this->output->heading(get_string('enrolmentoptions','enrol'), 2 , 'about-enrolmentoptions');
         # LB code end
         return $content;
     }

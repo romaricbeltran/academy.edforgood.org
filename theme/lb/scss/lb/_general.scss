@@ -448,15 +448,21 @@ a.dimmed {
     background-color: transparent;
 }
 
-// Retire l'élément "Options d'inscription" natif du haut de l'info_box de la page enrol
+// Retire l'élément "Options d'inscription" natif du haut de l'info_box de la page enrol, sans que les autres <h2> ne soient affectés
 #page-enrol-index #region-main h2:first-of-type {
     display: none;
 }
 
+#page-enrol-index #region-main .about-course,
+#page-enrol-index #region-main .about-teachers {
+    display: block !important;
+    padding-bottom: 1rem;
+}
+
 // Création des blocs pour la page enrol
 #page-enrol-index #region-main .course-presentation,
-#page-enrol-index #region-main .teachers,
-#page-enrol-index #region-main .enrolmentoptions-title,
+#page-enrol-index #region-main .teachers-presentation,
+#page-enrol-index #region-main .about-enrolmentoptions,
 #page-enrol-index #region-main #notice,
 #page-enrol-index #region-main .continuebutton {
     background-color: $block-background-color;
@@ -464,8 +470,9 @@ a.dimmed {
     padding: 1rem;
 }
 
+#page-enrol-index #region-main .summary,
 #page-enrol-index #region-main .teachers,
-#page-enrol-index #region-main .enrolmentoptions-title,
+#page-enrol-index #region-main .about-enrolmentoptions,
 #page-enrol-index #region-main #notice,
 #page-enrol-index #region-main .continuebutton {
     margin: 0 !important;
