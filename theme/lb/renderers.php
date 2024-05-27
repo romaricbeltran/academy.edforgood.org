@@ -357,6 +357,7 @@ class theme_lb_core_course_renderer extends core_course_renderer {
         $content .= $this->output->box_end();
         # LB code start - On enrol page, display enrol options title on the right place
         $content .= $this->output->heading(get_string('enrolmentoptions','enrol'), 2 , 'about-enrolmentoptions');
+        $content .= $this->output->box_start('generalbox enrolmentoptions-box info');
         # LB code end
         return $content;
     }
