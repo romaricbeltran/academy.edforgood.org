@@ -1,0 +1,19 @@
+@import "extras/ptserif";
+// Import all scss lb files.
+@import "lb/transitions";
+@import "lb/variables";
+@import "lb/general";
+@import "lb/pages";
+@import "lb/blocks";
+@import "lb/drawers";
+@import "lb/navbar";
+@import "lb/footer";
+@import "lb/breadcrumb";
+@import "lb/course";
+@import "lb/mixins/accessibilityfontsize";
+@import "lb/accessibilitybar";
+@import "lb/accessibilitystyles";
+@import "lb/login";
+@import "lb/mydashboard";
+@import "lb/frontpage";
+@import "lb/profile";

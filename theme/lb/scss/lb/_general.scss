@@ -1,0 +1,484 @@
+body {
+    background-color: $background !important; /* stylelint-disable-line */
+}
+
+#page-site-index #page-header,
+#page-my-index #page-header,
+#page-course-index-category #page-header {
+    margin: 0 auto;
+}
+
+#page-header {
+    margin: 1.25rem auto;
+    padding: 0;
+
+    h1 {
+        margin-bottom: 0;
+    }
+
+    #page-navbar {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+
+    .courseheader {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+    }
+}
+
+.lb-container-fluid {
+    padding: 0;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.card {
+    border: none;
+    -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+    box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+
+    &.dashboard-card {
+        background-color: $block-background-color;
+    }
+}
+
+.lb-container-fluid,
+.container-fluid {
+    max-width: 85%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-fluid.tertiary-navigation {
+    max-width: 100%;
+}
+
+.dropdown-item:active,
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:focus-within {
+    background-color: darken($button-color, 10%);
+}
+
+.shadow {
+    box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%) !important;
+}
+
+@include media-breakpoint-up(md) {
+    .pagelayout-standard #page.drawers .main-inner,
+    body.limitedwidth #page.drawers .main-inner,
+    #page.drawers .main-inner,
+    .lb-container-fluid,
+    .container-fluid,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 85%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .header-maxwidth {
+        max-width: 100%;
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .pagelayout-standard #page.drawers .main-inner,
+    body.limitedwidth #page.drawers .main-inner,
+    #page.drawers .main-inner,
+    .lb-container-fluid,
+    .container-fluid,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 95%;
+    }
+}
+
+h1 {
+    font-family: ptserif !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+    text-align: left;
+    color: $secondary-title-color !important;
+}
+
+h2 {
+    font-family: ptserif, monospace !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+    text-align: left;
+    color: $secondary-title-color !important;
+}
+
+h3 {
+    font-family: ptserif, monospace !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+    color: $secondary-title-color;
+    padding-bottom: 15px !important;
+}
+
+p,
+li,
+h5,
+label,
+td,
+div,
+input {
+    font-family: "Ubuntu", Arial !important;
+    color: #1d2125;
+}
+
+p {
+    padding-bottom: 15px !important;
+}
+
+a {
+    font-family: "Ubuntu", Arial !important;
+    color: $link-color;
+    transition: all 0.25s ease-out;
+    box-shadow: none !important;
+}
+
+a.dimmed {
+    color: $link-color !important;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.rounded {
+    border-radius: 0 !important;
+}
+
+.page-content a {
+    font-family: "Ubuntu", Arial !important;
+    text-decoration: underline !important;
+    color: $link-color !important;
+    transition: all 0.25s ease-out;
+
+    &:hover {
+        color: $link-color !important;
+    }
+}
+
+// Logo Header
+.navbar-brand {
+    font-family: ptserif, monospace !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
+    color: $button-color !important;
+}
+
+// Couleur des boutons
+.btn-primary,
+.btn-secondary {
+    font-family: "Ubuntu", Arial !important;
+    transition: all 0.25s ease-out;
+    background-color: $button-color;
+    border-color: $button-color;
+    border-radius: 0;
+    color: white;
+
+    &:hover,
+    &:focus,
+    .focus {
+        color: $button-color;
+        border-color: $button-color;
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+
+// Annulation arrondi
+.alert,
+.activity-header {
+    border-radius: 0 !important;
+}
+
+// Annulation border theme boost
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle,
+#course-category-listings
+    .listing-pagination
+    .yui3-button.active-page:not(:disabled):not(.disabled):active,
+#course-category-listings
+    .listing-pagination
+    .yui3-button.active-page:not(:disabled):not(.disabled).active,
+.show
+    > #course-category-listings
+    .listing-pagination
+    .yui3-button.active-page.dropdown-toggle {
+    border-color: $button-color !important;
+    background-color: transparent !important;
+    color: $button-color !important;
+    box-shadow: none !important;
+}
+
+// Enlever lien vers l'accueil Header
+
+// Couleur du menu de navigation d'un cours
+.courseindex {
+    .courseindex-item {
+        border-radius: 0 !important;
+    }
+
+    .courseindex-item.pageitem {
+        background-color: $button-color;
+        border-color: $button-color;
+        box-shadow: none !important;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $button-color;
+            border-color: $button-color;
+            box-shadow: none !important;
+        }
+    }
+}
+
+[role="treeitem"]:not([aria-expanded="true"]):focus {
+    box-shadow: none !important;
+}
+
+// Encadrement des activités dans la page de cours
+.activity-item {
+    border-radius: 0 !important;
+}
+
+// Encadrement d'un cours dans Mes Cours
+.card {
+    border-radius: 0 !important;
+}
+
+.card-img {
+    border-radius: 0 !important;
+}
+
+// On retire le background white global
+#page.drawers .main-inner {
+    background-color: transparent;
+}
+
+// Retire background white du header
+.navbar {
+    background: $background-header !important;
+}
+
+// style des formulaires Mes Cours
+.form-control {
+    background: none;
+
+    &:focus {
+        box-shadow: none;
+        border-color: inherit;
+        background: none;
+    }
+}
+
+.btn-outline-secondary:hover {
+    background-color: $button-color;
+}
+
+.btn-outline-secondary:hover span, .show>.btn-outline-secondary.dropdown-toggle span {
+    color: white;
+}
+
+.show > .btn-outline-secondary.dropdown-toggle,
+.btn-outline-secondary:not(:disabled):not(.disabled):active {
+    background-color: $button-color;
+    border-color: $button-color;
+}
+
+.btn-outline-secondary {
+    box-shadow: none !important;
+}
+
+// Bouton tiroir de blocs
+.drawer-toggles .drawer-toggler .btn span {
+    color: white;
+}
+
+// Remove Accueil du navbar
+.primary-navigation li[data-key="home"] {
+    display: none;
+}
+
+// Bouton cookie du loginForm
+.login-cookies {
+    align-self: center;
+}
+
+// Bannière de l'accueil
+#page.drawers {
+    padding: 0 !important;
+}
+
+.banner-home {
+    background-color: $brand-primary;
+
+    .container-fluid {
+        display: flex;
+        padding: 15px;
+
+        h1 {
+            color: white !important;
+            text-align: left;
+            padding: 1.5rem 0;
+        }
+
+        p {
+            color: white !important;
+        }
+    
+        .banner-img {
+            border-style: none;
+            width: 100%;
+            height: 100%;
+            align-self: center;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: auto;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .container-fluid {
+            display: block;
+        }
+    }
+}
+
+// Style de l'affichage de l'accueil "Liste combinée"
+.custom-select {
+    background: none;
+
+    &:focus {
+        border: 1px solid #8f959e;
+    }
+}
+
+.course_category_tree {
+    .category {
+        margin-bottom: 40px;
+    }
+
+    .courses {
+        .coursebox {
+            background: $block-background-color;
+            padding: 0.8rem;
+            margin: 1rem 0;
+        }
+    }
+
+    .info {
+        display: flex;
+        align-items: unset;
+        justify-content: space-between;
+
+        .categoryname {
+            background-image: none !important;
+            background-repeat: unset !important;
+            background-position: unset !important;
+            padding: 0 !important;
+        }
+
+        .coursename {
+            a {
+                background: none !important;
+                padding: 0 !important;
+            }
+        }
+    }
+
+    .category-browse {
+        .content {
+            display: none;
+        }
+    }
+
+    @media (min-width: 991.98px) {
+        .courses {
+            display: flex;
+            flex-flow: row wrap;
+            margin-right: -0.25rem;
+            margin-left: -0.25rem;
+
+            .coursebox {
+                width: calc(33.33% - 2rem);
+                margin: 1rem;
+            }
+        }
+    }
+}
+
+// Fix pastille calendrier
+.maincalendar .calendarmonth td .day-number-circle .day-number {
+    padding: 15% 4px;
+}
+
+.maincalendar .calendarmonth td.today .day-number-circle .day-number {
+    padding: 15% 4px;
+    color: white;
+}
+
+.maincalendar .calendarmonth td .day-number-circle {
+    line-height: inherit;
+}
+
+// Retire le background global dans le content de la page enrol
+#page-enrol-index #region-main {
+    background-color: transparent;
+}
+
+// Retire l'élément "Options d'inscription" natif du haut de l'info_box de la page enrol, sans que les autres <h2> ne soient affectés
+#page-enrol-index #region-main h2:first-of-type {
+    display: none;
+}
+
+#page-enrol-index #region-main .about-course,
+#page-enrol-index #region-main .about-teachers {
+    display: block !important;
+    padding-bottom: 1rem;
+}
+
+// Création des blocs pour la page enrol
+#page-enrol-index #region-main .course-presentation,
+#page-enrol-index #region-main .teachers-presentation,
+#page-enrol-index #region-main .about-enrolmentoptions,
+#page-enrol-index #region-main #notice,
+#page-enrol-index #region-main .continuebutton {
+    background-color: $block-background-color;
+    margin: 0 0 1rem 0;
+    padding: 1rem;
+}
+
+#page-enrol-index #region-main .summary,
+#page-enrol-index #region-main .teachers,
+#page-enrol-index #region-main .about-enrolmentoptions,
+#page-enrol-index #region-main #notice,
+#page-enrol-index #region-main .continuebutton {
+    margin: 0 !important;
+}
+
+#page-enrol-index #region-main .enrolmentoptions-box {
+    background-color: $block-background-color;
+    padding: 0 1rem 1rem 1rem !important;
+}
