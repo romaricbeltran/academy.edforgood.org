@@ -187,7 +187,8 @@ a.dimmed {
 
 // Couleur des boutons
 .btn-primary,
-.btn-secondary {
+.btn-secondary,
+.btn-outline-primary {
     font-family: "Ubuntu", Arial !important;
     transition: all 0.25s ease-out;
     background-color: $button-color;
@@ -214,6 +215,8 @@ a.dimmed {
 // Annulation border theme boost
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active
 .show > .btn-primary.dropdown-toggle,
 #course-category-listings
     .listing-pagination
