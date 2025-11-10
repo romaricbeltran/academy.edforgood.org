@@ -317,7 +317,7 @@ class theme_lb_core_course_renderer extends core_course_renderer {
             $course = new core_course_list_element($course);
         }
 
-        # LB code start - On enrol page, divide content structure
+        # LB code start - On enrol page, divide content structure, remove teachers-presentation
         $content = \html_writer::start_tag('div', ['class' => ($this->course_summary($chelper, $course) ? 'course-presentation' : '')]);
         if ($this->page->pagetype == "enrol-index") {
             if ($this->course_summary($chelper, $course)) {
@@ -328,12 +328,12 @@ class theme_lb_core_course_renderer extends core_course_renderer {
         $content .= $this->course_summary($chelper, $course);
         $content .= \html_writer::end_tag('div');
 
-        $content .= \html_writer::start_tag('div', ['class' => 'teachers-presentation']);
-        if ($this->page->pagetype == "enrol-index") {
-            $content .= \html_writer::tag('h2', 'Équipe pédagogique', ['class' => 'about-teachers']);
-        }
-        $content .= $this->course_contacts($course);
-        $content .= \html_writer::end_tag('div');
+        //$content .= \html_writer::start_tag('div', ['class' => 'teachers-presentation']);
+        //if ($this->page->pagetype == "enrol-index") {
+        //    $content .= \html_writer::tag('h2', 'Équipe pédagogique', ['class' => 'about-teachers']);
+        //}
+        //$content .= $this->course_contacts($course);
+        //$content .= \html_writer::end_tag('div');
         
         // $content .= $this->course_category_name($chelper, $course);
         // $content .= $this->course_custom_fields($course);
